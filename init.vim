@@ -139,10 +139,13 @@ nmap <silent> <Esc> :noh<cr>
 
 " TODO
 
-" Quickly edit / source the vimrc file
+" Quickly edit / source the init file
 nnoremap <silent> <leader>ev :e ~/.config/nvim/init.vim<cr>
 
 nnoremap <silent> <leader>sv :so ~/.config/nvim/init.vim<cr>
+
+" Quickly edit plugins
+nnoremap <silent> <leader>ep :e ~/.config/nvim/plugins.vim<cr>
 
 " Scroll viewport
 nnoremap <PageUp> 5<C-e>
@@ -155,6 +158,9 @@ nnoremap <PageDown> 5<C-y>
 
 " Toggle NerdTree
 nnoremap <silent> <leader>k :NERDTreeToggle<cr>
+
+" Show hidden files
+let NERDTreeShowHidden = 1
 
 " =====================================
 "	        Plugin: Fugitive

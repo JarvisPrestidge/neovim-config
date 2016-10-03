@@ -25,9 +25,6 @@ call dein#add('Shougo/dein.vim')
 " Theme
 call dein#add('morhetz/gruvbox')
 
-" Fancy icons
-call dein#add('ryanoasis/vim-devicons')
-
 " Status bar
 call dein#add('vim-airline/vim-airline')
 
@@ -62,6 +59,8 @@ call dein#add('godlygeek/tabular')
 " Comments
 call dein#add('tpope/vim-commentary')
 
+" Fancy icons
+call dein#add('ryanoasis/vim-devicons')
 
 if dein#check_install()
 	call dein#install()
