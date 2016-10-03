@@ -161,7 +161,17 @@ nnoremap <silent> <leader>k :NERDTreeToggle<cr>
 " =====================================
 
 " git status
-nnoremap <silent> <leader>gs :Gstatus<cr>
+nnoremap <leader>gs :Gstatus<cr>
+
+" git add .
+nnoremap <leader>ga :Git add .<cr><cr>
+
+" git commit -v -q - verbose and quiet
+nnoremap <leader>gc :Gcommit -v -q<cr>
+
+" git log - opens in quickfix windows to navigate to commits
+nnoremap <silent> <leader>gl :silent! Glog<cr>:bot copen<cr>
+
 
 " =====================================
 "	         Plugin: Tagbar
