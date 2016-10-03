@@ -31,7 +31,6 @@ call dein#add('vim-airline/vim-airline')
 " File broswer
 call dein#add('scrooloose/nerdtree')
 call dein#add('tiagofumo/vim-nerdtree-syntax-highlight')
-call dein#add('Xuyuanp/nerdtree-git-plugin')
 
 " Tag / class broswer
 call dein#add('majutsushi/tagbar')
@@ -39,6 +38,7 @@ call dein#add('majutsushi/tagbar')
 " Git Integration
 call dein#add('tpope/vim-fugitive')
 call dein#add('airblade/vim-gitgutter')
+call dein#add('Xuyuanp/nerdtree-git-plugin')
 
 " Linting & syntax highlighting
 " 	neomake

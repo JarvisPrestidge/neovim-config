@@ -156,6 +156,9 @@ nnoremap <silent> <leader>ep :e ~/.config/nvim/plugins.vim<cr>
 " Scroll viewport
 nnoremap <PageUp> 5<C-y>
 nnoremap <PageDown> 5<C-e>
+inoremap <PageUp> <Esc>5<C-y>
+inoremap <PageDown> <Esc>5<C-e>
+
 
 " Re-highlight indented selection
 vmap < <gv
