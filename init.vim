@@ -29,6 +29,12 @@ source ~/.config/nvim/plugins.vim
 filetype plugin indent on
 syntax enable
 
+" Guard to safely re-source init.vim
+if !exists('g:encoding_set') || !has('nvim')
+    set encoding=utf8
+    let g:encoding_set = 1
+endif
+
 " Don't protect against data loss
 set noswapfile
 set nobackup
@@ -148,9 +154,12 @@ nnoremap <silent> <leader>sv :so ~/.config/nvim/init.vim<cr>
 nnoremap <silent> <leader>ep :e ~/.config/nvim/plugins.vim<cr>
 
 " Scroll viewport
-nnoremap <PageUp> 5<C-e>
-nnoremap <PageDown> 5<C-y>
+nnoremap <PageUp> 5<C-y>
+nnoremap <PageDown> 5<C-e>
 
+" Re-highlight indented selection
+vmap < <gv
+vmap > >gv
 
 " =====================================
 "	        Plugin: NERDTree
@@ -161,6 +170,14 @@ nnoremap <silent> <leader>k :NERDTreeToggle<cr>
 
 " Show hidden files
 let NERDTreeShowHidden = 1
+
+" Close if only window open
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" =====================================
+"	        Plugin: Devicons
+" =====================================
+
 
 " =====================================
 "	        Plugin: Fugitive
