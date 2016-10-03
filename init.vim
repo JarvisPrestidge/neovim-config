@@ -131,6 +131,12 @@ inoremap jk <Esc>
 " Toggle list symbols
 nnoremap <silent> <leader>l :set list!<cr>
 
+" Toggle relative numbers
+nnoremap <silent> <leader>n :set relativenumber!<cr>
+
+" Remove search highlighting
+nmap <silent> <Esc> :noh<cr>
+
 " Quickly edit / source the vimrc file
 nnoremap <silent> <leader>ev :e ~/.config/nvim/init.vim<cr>
 
