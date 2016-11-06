@@ -3,7 +3,7 @@
 "  ||__|||__|||__|||__|||__|||__|||__||
 "  |/__\|/__\|/__\|/__\|/__\|/__\|/__\|
 "
-"	    NeoVim init.vim
+"           NeoVim init.vim
 "
 "  Author: Jarvis Prestidge
 "  Link  : https://github.com/jarvisprestidge/dotfiles
@@ -11,18 +11,18 @@
 
 " Turn off compatiblity support for vi
 if &compatible
-	set nocompatible
+        set nocompatible
 endif
 
 " =====================================
-"	            Plugins
+"                   Plugins
 " =====================================
 
 " Include plugins
 source ~/.config/nvim/plugins.vim
 
 " =====================================
-"	      General Configuration
+"             General Configuration
 " =====================================
 
 " Necessary for dein
@@ -35,9 +35,21 @@ if !exists('g:encoding_set') || !has('nvim')
     let g:encoding_set = 1
 endif
 
+" after a re-source, fix syntax matching issues
+if exists('g:loaded_webdevicons')
+    call webdevicons#refresh()
+endif
+
+" Let vim use the system clipboard
+set clipboard^=unnamedplus,unnamed
+
 " Don't protect against data loss
 set noswapfile
 set nobackup
+
+" turn on undo files, put them in a common location
+set undofile
+set undodir=~/.vim/undo/
 
 " Maintain hidden buffers
 set hidden
@@ -45,6 +57,9 @@ set hidden
 filetype on
 
 set history=1000
+
+" make backspace sane
+set backspace=indent,eol,start
 
 " Wrapping
 set textwidth=79
@@ -94,12 +109,12 @@ set noerrorbells
 set visualbell
 
 " =====================================
-"	             Theme
+"                    Theme
 " =====================================
 
 " Enable 24 bit color support if supported
 if (has("termguicolors"))
-	set termguicolors
+        set termguicolors
 endif
 
 " Color scheme settings
@@ -108,7 +123,7 @@ set background=dark
 
 
 " =====================================
-"	           Interface
+"                  Interface
 " =====================================
 
 set number
@@ -118,8 +133,11 @@ set list
 set listchars=tab:→\ ,eol:¬,trail:⋅,extends:❯,precedes:❮
 set showbreak=↪
 
+" replace the default box drawing characters
+set fillchars=vert:│,fold:─,diff:─
+
 " =====================================
-"	            Mappings
+"                   Mappings
 " =====================================
 
 " Space as leader
@@ -134,20 +152,25 @@ nnoremap <A-l> <C-W>l
 " Handy remap to get out of insert mode
 inoremap jk <Esc>
 
+" Remove search highlighting
+nnoremap <silent> jk :noh<cr>
+
+" Remove search highlighting
+cnoremap <silent> jk <Esc>
+
 " Toggle list symbols
 nnoremap <silent> <leader>l :set list!<cr>
 
 " Toggle relative numbers
 nnoremap <silent> <leader>n :set relativenumber!<cr>
 
-" Remove search highlighting
-nmap <silent> <Esc> :noh<cr>
+" Make Y move like D and C
+noremap Y y$
 
-" TODO
-
-" Quickly edit / source the init file
+" Quickly edit init.vim
 nnoremap <silent> <leader>ev :e ~/.config/nvim/init.vim<cr>
 
+" Source init.vim
 nnoremap <silent> <leader>sv :so ~/.config/nvim/init.vim<cr>
 
 " Quickly edit plugins
@@ -159,13 +182,27 @@ nnoremap <PageDown> 5<C-e>
 inoremap <PageUp> <Esc>5<C-y>
 inoremap <PageDown> <Esc>5<C-e>
 
-
 " Re-highlight indented selection
-vmap < <gv
-vmap > >gv
+vnoremap < <gv
+vnoremap > >gv
+
+" Improve up and down movement on wrapped lines
+nnoremap j gj
+nnoremap k gk
+
+" Keep search pattern at center of screen
+nnoremap <silent> n nzz
+nnoremap <silent> N Nzz
+nnoremap <silent> * *zz
+nnoremap <silent> # #zz
+nnoremap <silent> g* g*zz
+nnoremap <silent> g# g#zz
+
+" Search for word under cursor
+nnoremap <leader>/ "fyiw :/<c-r>f<cr>
 
 " =====================================
-"	        Plugin: NERDTree
+"               Plugin: NERDTree
 " =====================================
 
 " Toggle NerdTree
@@ -174,16 +211,30 @@ nnoremap <silent> <leader>k :NERDTreeToggle<cr>
 " Show hidden files
 let NERDTreeShowHidden = 1
 
+let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+let g:WebDevIconsUnicodeDecorateFolderNodeDefaultSymbol = ''
+
+" let g:NERDTreeFileExtensionHighlightFullName = 1
+" let g:NERDTreeExactMatchHighlightFullName = 1
+" let g:NERDTreePatternMatchHighlightFullName = 1
+
+let g:WebDevIconsNerdTreeAfterGlyphPadding = '  '
+
+let g:NERDTreeHighlightFolders = 1 " enables folder icon highlighting using exact match
+let g:NERDTreeHighlightFoldersFullName = 1 " highlights the folder name
+
+hi Directory guifg=#689d6a
+
 " Close if only window open
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " =====================================
-"	        Plugin: Devicons
+"               Plugin: Devicons
 " =====================================
 
 
 " =====================================
-"	        Plugin: Fugitive
+"               Plugin: Fugitive
 " =====================================
 
 " git status
@@ -200,16 +251,16 @@ nnoremap <silent> <leader>gl :silent! Glog<cr>:bot copen<cr>
 
 
 " =====================================
-"	         Plugin: Tagbar
+"                Plugin: Tagbar
 " =====================================
 
 " Toggle Tagbar
-nnoremap <silent> <F8> :TagbarToggle<CR>
+nnoremap <silent> <leader>t :TagbarToggle<CR>
 
 let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
 
 " =====================================
-"	        Plugin: Airline
+"               Plugin: Airline
 " =====================================
 
 let g:airline_theme='gruvbox'
@@ -220,4 +271,3 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#tab_min_count = 2 
 let g:airline#extensions#tabline#show_buffers = 0 
 let g:airline#extensions#tabline#show_splits = 0
-
