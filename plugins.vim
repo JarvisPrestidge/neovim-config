@@ -3,21 +3,21 @@
 "  ||__|||__|||__|||__|||__|||__|||__||
 "  |/__\|/__\|/__\|/__\|/__\|/__\|/__\|
 "
-"	      NeoVim plugins.vim
+"             NeoVim plugins.vim
 "
 "  Author: Jarvis Prestidge
 "  Link  : https://github.com/jarvisprestidge/dotfiles
 "
 
 " =====================================
-"	        Plugins
+"               Plugins
 " =====================================
 
 " Add dein to runtime path
-set runtimepath+=~/.vim/plugins/repos/github.com/Shougo/dein.vim
+set runtimepath+=~/.vim/repos/github.com/Shougo/dein.vim
 
 " Start plugin block
-call dein#begin(expand('~/.vim/plugins'))
+call dein#begin(expand('~/.vim'))
 
 " Plugin Manager
 call dein#add('Shougo/dein.vim')
@@ -30,7 +30,6 @@ call dein#add('vim-airline/vim-airline')
 
 " File broswer
 call dein#add('scrooloose/nerdtree')
-call dein#add('tiagofumo/vim-nerdtree-syntax-highlight')
 
 " Tag / class broswer
 call dein#add('majutsushi/tagbar')
@@ -41,12 +40,12 @@ call dein#add('airblade/vim-gitgutter')
 call dein#add('Xuyuanp/nerdtree-git-plugin')
 
 " Linting & syntax highlighting
-" 	neomake
+"       neomake
 
 " Code completion
-" 	deoplete.nvim
-" 	clang-complete
-" 	jedi
+"       deoplete.nvim
+"       clang-complete
+"       jedi
 call dein#add('ervandew/supertab')
 call dein#add('jiangmiao/auto-pairs')
 
@@ -62,9 +61,10 @@ call dein#add('tpope/vim-commentary')
 
 " Fancy icons
 call dein#add('ryanoasis/vim-devicons')
+call dein#add('tiagofumo/vim-nerdtree-syntax-highlight')
 
 if dein#check_install()
-	call dein#install()
+        call dein#install()
 endif
 
 " End plugin block
